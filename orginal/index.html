@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert text to Hash md5 - clarotm</title>
+    <!--Exteernall css and font google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="/css/css2.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!--Exteernall css and font google-->
+    <!-- internal css -->
+    <style>
+        /* font-family: 'Anton', sans-serif; */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-self: center;
+            max-width: 500px !important;
+            margin: 2em auto;
+        }
+
+        #div-1 {
+            /* background-color: #fff; */
+        }
+
+        #div-2 {}
+
+        #div-2:nth-child(1) {
+            color: #333 !important;
+            font-family: Anton, sans-serif;
+            font-size: 2em;
+            position: fixed;
+            transform: rotate(-90deg);
+            margin-left: -160px;
+            margin-top: 150px;
+        }
+
+        table,
+        th,
+        td {
+            border-collapse: separate;
+            border-spacing: 15px 50px;
+        }
+
+        table {
+            text-align: center !important;
+        }
+
+    </style>
+
+    <!-- internal css -->
+</head>
+
+<body>
+    <div id="div-1">
+        <div id="div-2">
+            <span>Experience</span>
+            <br />
+            <span>being strong here</span>
+        </div>
+        <table class="table" id="table-1">
+            <thead class="thead-dark">
+                <th scope="col">History Text</th>
+                <th scope="col">Password Hash MD5</th>
+            </thead>
+            <!-- input data and text-->
+            <div class="form-group border-0 mb-3">
+                <input type="text" class="form-control" placeholder="" id="text-1">
+                <span style="display:none;z-index: 1; position: relative;"
+                    class=" badge bg-success start-50  position-absolute translate-middle"
+                    id="successful-bage">Successful</span>
+                <span style="display:none;" class=" badge bg-warning start-50  position-absolute translate-middle"
+                    id="emty-input-bage">Emty input</span>
+            </div>
+            <button type="submit" class="btn btn-primary text-start" onclick="check_value()">Submit</button>
+            <!-- input data and text-->
+            <!-- Result col-->
+            <tr>
+                <td>Result: </td>
+                <td id="result"></td>
+            </tr>
+            <!-- Result col-->
+            <!-- title history-->
+            <tr>
+                <td colspan="3" style="font-weight: bold; text-align: center !important;border-bottom: 1px solid #333;">
+                    History
+                    Create Hash MD5</td>
+
+            </tr>
+            <!-- title history-->
+        </table>
+        <!-- coypright-->
+        <div class="alert alert-secondary" role="alert">
+            Designed and coded by <a href="https://amirreza-heydari.clarotm.ir/" target="_blank"
+                class="text-decoration-none btn btn-secondary">Amirreza Heydari</a> and <a href="https://clarotm.ir/"
+                target="_blank" class="text-decoration-none btn btn-secondary">ClaroTM</a>
+        </div>
+        <!-- coypright-->
+    </div>
+
+    <script type="text/javascript">
+        // start Value document
+        let input = document.getElementById("text-1");
+        let result = document.getElementById("result");
+        let successful_bage = document.getElementById("successful-bage");
+        let emty_input_bage = document.getElementById("emty-input-bage");
+        let table_1 = document.getElementById("table-1");
+        let row = table_1.insertRow(-1);
+        let cell1 = row.insertCell(-1);
+        // end Value document
+        //start function code genarate
+        function check_value() {
+            if (input.value !== '') {
+                let history_input = input.value;
+                let md5create = md5(input.value);
+                let history_md5 = md5create;
+                result.innerHTML = md5create;
+                cell1.innerHTML += '<div class="my-2 border-1 border-dark border-bottom">' + '<span>' + history_input + " -> " + history_md5 + '</span>' + ' <br />';
+                table_1.rows[3].className = 'list-group list-group-horizontal';
+                input.value == '';
+                successful_bage.style.display = "block";
+                setInterval(() => {
+                    successful_bage.style.display = "none";
+                }, 2000);
+            } else {
+                console.log("emty input");
+                emty_input_bage.style.display = "block";
+                setInterval(() => {
+                    emty_input_bage.style.display = "none";
+                }, 2000);
+            }
+        }
+        //end function code genarate
+    </script>
+    <!-- script conver text to md5 hash-->
+    <script src="/js/md5.js"></script>
+</body>
+
+</html>
